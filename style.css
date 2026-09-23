@@ -1,0 +1,1444 @@
+:root {
+  color-scheme: light;
+
+  font-family:
+    Arial,
+    "Malgun Gothic",
+    sans-serif;
+}
+
+
+/* =========================
+   RESET
+========================= */
+
+* {
+  box-sizing: border-box;
+
+  -webkit-tap-highlight-color:
+    transparent;
+}
+
+
+html,
+body {
+  overscroll-behavior: none;
+}
+
+
+body {
+  margin: 0;
+
+  min-height: 100vh;
+
+  display: grid;
+
+  place-items: center;
+
+  background:
+    #203c4f;
+
+  overflow: hidden;
+}
+
+
+button {
+  font: inherit;
+
+  border: 0;
+
+  padding: 0;
+
+  cursor: pointer;
+
+  background:
+    transparent;
+}
+
+
+[hidden] {
+  display: none !important;
+}
+
+
+img {
+  -webkit-user-drag: none;
+
+  user-drag: none;
+
+  user-select: none;
+
+  -webkit-user-select: none;
+}
+
+
+/* =========================
+   GAME
+========================= */
+
+.game-shell {
+  width:
+    min(
+      100vw,
+      562px
+    );
+
+  aspect-ratio:
+    9 / 16;
+
+  max-height:
+    100vh;
+}
+
+
+.game {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  background:
+    url("assets/images/background/bg_game.png")
+    center / cover
+    no-repeat;
+
+  user-select: none;
+
+  -webkit-user-select: none;
+}
+
+
+/* =========================
+   HUD
+========================= */
+
+.hud {
+  height: 13%;
+
+  min-height: 82px;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(92px, 1fr)
+    minmax(115px, 1.25fr)
+    minmax(100px, 1fr);
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding:
+    max(
+      9px,
+      env(safe-area-inset-top)
+    )
+    10px
+    3px;
+}
+
+
+/* =========================
+   LEFT BUTTONS
+========================= */
+
+.hud-left {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    flex-start;
+
+  gap: 6px;
+}
+
+
+.icon-button {
+  flex:
+    1 1 0;
+
+  width: 0;
+
+  max-width: 62px;
+
+  aspect-ratio: 1;
+
+  position: relative;
+
+  transition:
+    transform .15s ease;
+
+  touch-action:
+    manipulation;
+}
+
+
+.icon-button:active,
+.image-button:active,
+.start-button:active,
+.keep-button:active,
+.gameover-restart-button:active {
+  transform:
+    scale(.94);
+}
+
+
+.icon-button img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit:
+    contain;
+
+  pointer-events:
+    none;
+}
+
+
+/* =========================
+   LEVEL PANEL
+========================= */
+
+.level-panel {
+  position: relative;
+
+  justify-self: center;
+
+  width: 100%;
+
+  max-width: 190px;
+
+  aspect-ratio:
+    280 / 120;
+
+  display: grid;
+
+  place-items: center;
+}
+
+
+.level-panel img {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit:
+    contain;
+
+  pointer-events:
+    none;
+}
+
+
+.level-panel span {
+  position: relative;
+
+  z-index: 1;
+
+  transform:
+    translateY(2px);
+
+  color:
+    #744326;
+
+  font-weight:
+    900;
+
+  font-size:
+    clamp(
+      12px,
+      3vw,
+      18px
+    );
+
+  text-shadow:
+    0 1px #fff4d0;
+
+  white-space:
+    nowrap;
+}
+
+
+/* =========================
+   TIMER PANEL
+========================= */
+
+.timer-panel {
+  position: relative;
+
+  justify-self: end;
+
+  width: 130%;
+
+  max-width: 220px;
+
+  aspect-ratio:
+    280 / 120;
+
+  display: grid;
+
+  place-items: center;
+
+  user-select: none;
+
+  -webkit-user-select:
+    none;
+}
+
+
+.timer-panel img {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit:
+    contain;
+
+  pointer-events:
+    none;
+}
+
+
+#timerValue {
+  position: relative;
+
+  z-index: 1;
+
+  transform:
+    translateY(2px);
+
+  color:
+    #744326;
+
+  font-weight:
+    900;
+
+  font-size:
+    clamp(
+      14px,
+      3.4vw,
+      20px
+    );
+
+  line-height: 1;
+
+  letter-spacing:
+    .02em;
+
+  text-shadow:
+    0 1px #fff4d0;
+
+  white-space:
+    nowrap;
+}
+
+
+/* =========================
+   TRAY BOARD
+========================= */
+
+.tray-board {
+  height: 87%;
+
+  padding:
+    4px
+    4.5%
+    4%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      1fr
+    );
+
+  grid-auto-rows:
+    minmax(
+      0,
+      1fr
+    );
+
+  gap:
+    1.6%
+    1.5%;
+
+  align-content:
+    center;
+
+  user-select:
+    none;
+
+  -webkit-user-select:
+    none;
+
+  touch-action:
+    manipulation;
+}
+
+
+/* =========================
+   TRAY
+========================= */
+
+.tray {
+  position: relative;
+
+  min-width: 0;
+
+  min-height: 0;
+
+  align-self:
+    center;
+
+  justify-self:
+    center;
+
+  width: 100%;
+
+  max-height: 100%;
+
+  aspect-ratio:
+    340 / 760;
+
+  background:
+    url("assets/images/tray/bento_normal.png")
+    center / 100% 100%
+    no-repeat;
+
+  user-select:
+    none;
+
+  -webkit-user-select:
+    none;
+
+  -webkit-user-drag:
+    none;
+
+  touch-action:
+    manipulation;
+
+  outline:
+    none;
+}
+
+
+.tray:focus,
+.tray:focus-visible {
+  outline:
+    none;
+}
+
+
+/* =========================
+   기본 2줄
+========================= */
+
+.tray:nth-child(1),
+.tray:nth-child(2),
+.tray:nth-child(3) {
+  transform:
+    translateY(42px);
+}
+
+
+.tray:nth-child(4),
+.tray:nth-child(5),
+.tray:nth-child(6) {
+  transform:
+    translateY(24px);
+}
+
+
+/* =========================
+   3줄 이상
+========================= */
+
+.tray-board:has(.tray:nth-child(7)) {
+  transform:
+    translateY(0);
+
+  padding-top:
+    1%;
+
+  padding-bottom:
+    1%;
+
+  padding-left:
+    3%;
+
+  padding-right:
+    3%;
+
+  row-gap:
+    .8%;
+}
+
+
+/*
+  3줄에서는
+  가로를 줄이고 세로를 길게
+*/
+
+.tray-board:has(.tray:nth-child(7))
+.tray {
+  width:
+    85%;
+
+  height:
+    108%;
+
+  max-height:
+    none;
+
+  aspect-ratio:
+    auto;
+}
+
+
+.tray-board:has(.tray:nth-child(7))
+.tray:nth-child(n) {
+  transform:
+    translateY(0);
+}
+
+
+/* 하단 줄은 살짝 위로 */
+
+.tray-board:has(.tray:nth-child(7))
+.tray:nth-child(n+7) {
+  transform:
+    translateY(-16px);
+}
+
+
+/* =========================
+   TARGET
+========================= */
+
+.tray[data-selected="true"]::after {
+  content: "";
+
+  position: absolute;
+
+  inset:
+    4%;
+
+  border-radius:
+    12%;
+
+  border:
+    3px solid
+    rgba(
+      255,
+      221,
+      104,
+      .95
+    );
+
+  box-shadow:
+    0 0 0 3px
+    rgba(
+      255,
+      255,
+      255,
+      .68
+    ),
+
+    0 0 14px
+    rgba(
+      255,
+      208,
+      85,
+      .55
+    );
+
+  pointer-events:
+    none;
+}
+
+
+.tray.target {
+  filter:
+    drop-shadow(
+      0
+      0
+      10px
+      rgba(
+        255,
+        245,
+        184,
+        .9
+      )
+    );
+}
+
+
+/* =========================
+   COMPLETE
+========================= */
+
+.tray.is-complete {
+  filter:
+    saturate(.95)
+    brightness(1.03);
+}
+
+
+.tray.is-complete::after {
+  content: "";
+
+  position: absolute;
+
+  z-index: 3;
+
+  inset:
+    2.4%
+    3.4%;
+
+  border-radius:
+    12%;
+
+  background:
+    linear-gradient(
+      135deg,
+
+      rgba(
+        255,
+        255,
+        255,
+        .32
+      )
+      0%,
+
+      rgba(
+        255,
+        255,
+        255,
+        .10
+      )
+      26%,
+
+      rgba(
+        255,
+        255,
+        255,
+        .05
+      )
+      58%,
+
+      rgba(
+        255,
+        255,
+        255,
+        .22
+      )
+      100%
+    );
+
+  border:
+    2px solid
+    rgba(
+      255,
+      255,
+      255,
+      .42
+    );
+
+  box-shadow:
+    inset
+    0
+    0
+    10px
+    rgba(
+      255,
+      255,
+      255,
+      .24
+    ),
+
+    0
+    2px
+    8px
+    rgba(
+      60,
+      40,
+      25,
+      .10
+    );
+
+  pointer-events:
+    none;
+}
+
+
+/* =========================
+   SLOTS
+========================= */
+
+.slots {
+  position:
+    absolute;
+
+  z-index: 1;
+
+  inset:
+    7.8%
+    10.8%
+    7.2%;
+
+  display:
+    grid;
+
+  grid-template-rows:
+    repeat(
+      5,
+      1fr
+    );
+
+  gap:
+    1.95%;
+
+  pointer-events:
+    none;
+
+  user-select:
+    none;
+}
+
+
+.slot {
+  position:
+    relative;
+
+  min-height:
+    0;
+
+  border-radius:
+    18%;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  pointer-events:
+    none;
+}
+
+
+.slot.empty {
+  background:
+    none;
+}
+
+
+/* =========================
+   FOOD
+========================= */
+
+.food {
+  position:
+    absolute;
+
+  left:
+    50%;
+
+  top:
+    calc(
+      50% + 10px
+    );
+
+  width:
+    74%;
+
+  height:
+    74%;
+
+  object-fit:
+    contain;
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+
+  transition:
+    transform .16s ease,
+    filter .16s ease,
+    opacity .16s ease;
+
+  user-select:
+    none;
+
+  -webkit-user-select:
+    none;
+
+  -webkit-user-drag:
+    none;
+
+  pointer-events:
+    auto;
+}
+
+
+.food.pickable {
+  cursor:
+    grab;
+
+  touch-action:
+    none;
+}
+
+
+.food.pickable:active {
+  cursor:
+    grabbing;
+}
+
+
+.food.locked {
+  opacity:
+    .95;
+
+  cursor:
+    default;
+}
+
+
+.food.active {
+  transform:
+    translate(
+      -50%,
+      -60%
+    )
+    scale(
+      1.1
+    );
+
+  filter:
+    drop-shadow(
+      0
+      5px
+      4px
+      rgba(
+        76,
+        40,
+        24,
+        .38
+      )
+    );
+}
+
+
+/* 새우튀김 위치 보정 */
+
+.food[alt="shrimp"] {
+  transform:
+    translate(
+      -50%,
+      -56%
+    );
+}
+
+
+.food[alt="shrimp"].active {
+  transform:
+    translate(
+      -50%,
+      -66%
+    )
+    scale(
+      1.1
+    );
+}
+
+
+/* =========================
+   DRAG GHOST
+========================= */
+
+.drag-food {
+  position:
+    fixed;
+
+  z-index:
+    100;
+
+  pointer-events:
+    none;
+
+  object-fit:
+    contain;
+
+  opacity:
+    .94;
+
+  transform:
+    scale(
+      1.08
+    )
+    rotate(
+      -2deg
+    );
+
+  filter:
+    drop-shadow(
+      0
+      10px
+      7px
+      rgba(
+        76,
+        40,
+        24,
+        .35
+      )
+    );
+
+  will-change:
+    left,
+    top,
+    transform;
+
+  -webkit-user-drag:
+    none;
+}
+
+
+/* =========================
+   MOVE ANIMATION
+========================= */
+
+.food-flyer {
+  position:
+    fixed;
+
+  z-index:
+    50;
+
+  pointer-events:
+    none;
+
+  object-fit:
+    contain;
+
+  will-change:
+    transform,
+    opacity;
+
+  filter:
+    drop-shadow(
+      0
+      7px
+      5px
+      rgba(
+        76,
+        40,
+        24,
+        .35
+      )
+    );
+
+  -webkit-user-drag:
+    none;
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+.toast {
+  position:
+    absolute;
+
+  z-index:
+    30;
+
+  left:
+    50%;
+
+  bottom:
+    3.2%;
+
+  transform:
+    translate(
+      -50%,
+      15px
+    );
+
+  width:
+    max-content;
+
+  max-width:
+    82%;
+
+  padding:
+    7px
+    12px;
+
+  border-radius:
+    999px;
+
+  background:
+    rgba(
+      74,
+      54,
+      45,
+      .82
+    );
+
+  color:
+    white;
+
+  font-size:
+    12px;
+
+  font-weight:
+    700;
+
+  opacity:
+    0;
+
+  pointer-events:
+    none;
+
+  transition:
+    .2s;
+}
+
+
+.toast.show {
+  opacity:
+    1;
+
+  transform:
+    translate(
+      -50%,
+      0
+    );
+}
+
+
+/* =========================
+   CLEAR
+========================= */
+
+.clear-overlay {
+  position:
+    absolute;
+
+  z-index:
+    20;
+
+  inset:
+    0;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  padding:
+    9%;
+
+  background:
+    rgba(
+      48,
+      31,
+      28,
+      .42
+    );
+
+  backdrop-filter:
+    blur(
+      2px
+    );
+}
+
+
+.clear-card {
+  position:
+    relative;
+
+  width:
+    min(
+      100%,
+      420px
+    );
+
+  aspect-ratio:
+    760 / 635;
+}
+
+
+.clear-bg {
+  position:
+    absolute;
+
+  z-index:
+    -1;
+
+  inset:
+    0
+    0
+    auto;
+
+  width:
+    100%;
+
+  height:
+    auto;
+
+  pointer-events:
+    none;
+}
+
+
+.clear-actions {
+  position:
+    absolute;
+
+  top:
+    77%;
+
+  left:
+    13%;
+
+  display:
+    flex;
+
+  width:
+    74%;
+
+  gap:
+    5%;
+}
+
+
+.image-button {
+  width:
+    50%;
+
+  touch-action:
+    manipulation;
+}
+
+
+.image-button img {
+  display:
+    block;
+
+  width:
+    100%;
+
+  height:
+    auto;
+
+  pointer-events:
+    none;
+}
+
+
+/* =========================
+   GAME OVER
+========================= */
+
+.gameover-overlay {
+  position:
+    absolute;
+
+  z-index:
+    25;
+
+  inset:
+    0;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  padding:
+    10%;
+
+  background:
+    rgba(
+      48,
+      31,
+      28,
+      .42
+    );
+
+  backdrop-filter:
+    blur(
+      2px
+    );
+}
+
+
+.gameover-box {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+}
+
+
+.gameover-restart-button {
+  width:
+    min(
+      48vw,
+      190px
+    );
+
+  transition:
+    transform
+    .15s
+    ease;
+
+  touch-action:
+    manipulation;
+}
+
+
+.gameover-restart-button img {
+  display:
+    block;
+
+  width:
+    100%;
+
+  height:
+    auto;
+
+  filter:
+    drop-shadow(
+      0
+      6px
+      3px
+      rgba(
+        83,
+        42,
+        31,
+        .28
+      )
+    );
+
+  pointer-events:
+    none;
+}
+
+
+/* =========================
+   START
+========================= */
+
+.start-overlay {
+  position:
+    absolute;
+
+  z-index:
+    40;
+
+  inset:
+    0;
+
+  display:
+    grid;
+
+  place-items:
+    center;
+
+  padding:
+    12%
+    10%;
+
+  background:
+    linear-gradient(
+      rgba(
+        255,
+        251,
+        233,
+        .14
+      ),
+
+      rgba(
+        113,
+        69,
+        45,
+        .20
+      )
+    );
+}
+
+
+.start-card {
+  width:
+    min(
+      100%,
+      430px
+    );
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+}
+
+
+.game-logo {
+  width:
+    100%;
+
+  height:
+    auto;
+
+  filter:
+    drop-shadow(
+      0
+      7px
+      3px
+      rgba(
+        87,
+        47,
+        27,
+        .27
+      )
+    );
+
+  pointer-events:
+    none;
+}
+
+
+/* =========================
+   START BUTTONS
+========================= */
+
+.start-actions {
+  width:
+    76%;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  gap:
+    12px;
+}
+
+
+.start-button,
+.keep-button {
+  width:
+    100%;
+
+  transition:
+    transform
+    .15s
+    ease;
+
+  touch-action:
+    manipulation;
+}
+
+
+.start-button img,
+.keep-button img {
+  display:
+    block;
+
+  width:
+    100%;
+
+  height:
+    auto;
+
+  filter:
+    drop-shadow(
+      0
+      6px
+      2px
+      rgba(
+        83,
+        42,
+        31,
+        .28
+      )
+    );
+
+  pointer-events:
+    none;
+
+  -webkit-user-drag:
+    none;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-aspect-ratio: 9/16) {
+
+  .game-shell {
+    width:
+      100vw;
+
+    height:
+      100vh;
+
+    aspect-ratio:
+      auto;
+  }
+
+}
+
+
+@media (min-width: 563px) {
+
+  .game {
+    border-radius:
+      22px;
+
+    box-shadow:
+      0
+      14px
+      42px
+      #122533;
+  }
+
+}
